@@ -17,8 +17,29 @@ variable "rsa_bits" {
 }
 
 variable "common_name" {
-  description = "Define the certificate common name."
+  description = "[DEPRECATED] Define the certificate common name. Use 'subject' instead"
   type        = string
+  default     = ""
+}
+
+variable "subject" {
+  description = "Subject properties"
+  type = object(
+    {
+      common_name         = string
+      organizational_unit = optional(string)
+      organization        = optional(string)
+      street_address      = optional(list(string))
+      postal_code         = optional(string)
+      locality            = optional(string)
+      province            = optional(string)
+      country             = optional(string)
+    }
+  )
+
+  default = {
+    common_name = ""
+  }
 }
 
 variable "validity_period_hours" {
