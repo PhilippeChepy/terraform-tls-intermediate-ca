@@ -23,8 +23,8 @@ resource "tls_cert_request" "intermediate" {
 resource "tls_locally_signed_cert" "intermediate" {
   cert_request_pem   = tls_cert_request.intermediate.cert_request_pem
   ca_key_algorithm   = var.key_algorithm
-  ca_private_key_pem = var.root_ca_private_key_pem
-  ca_cert_pem        = var.root_ca_certificate_pem
+  ca_private_key_pem = var.signing_key_pem != "" ? var.signing_key_pem : var.root_ca_private_key_pem
+  ca_cert_pem        = var.signing_cert_pem != "" ? var.signing_cert_pem : var.root_ca_certificate_pem
 
   is_ca_certificate     = true
   validity_period_hours = var.validity_period_hours / 60
