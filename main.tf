@@ -27,7 +27,7 @@ resource "tls_locally_signed_cert" "intermediate" {
   ca_cert_pem        = var.signing_cert_pem != "" ? var.signing_cert_pem : var.root_ca_certificate_pem
 
   is_ca_certificate     = true
-  validity_period_hours = var.validity_period_hours / 60
+  validity_period_hours = var.validity_period_hours
   allowed_uses = [
     "cert_signing",
   ]
