@@ -48,11 +48,25 @@ variable "validity_period_hours" {
 }
 
 variable "root_ca_private_key_pem" {
-  description = "The private key used to sign this certificate."
+  description = "[DEPRECATED] The private key used to sign this certificate. Use signing_key_pem instead."
   type        = string
+  default     = ""
 }
 
 variable "root_ca_certificate_pem" {
-  description = "The root or intermediate certificate used to sign this certificate."
+  description = "[DEPRECATED] The root or intermediate certificate used to sign this certificate. Use signing_cert_pem instead"
   type        = string
+  default     = ""
+}
+
+variable "signing_key_pem" {
+  description = "The private key used to sign this certificate."
+  type        = string
+  default     = ""
+}
+
+variable "signing_cert_pem" {
+  description = "The root certificate used to sign this certificate."
+  type        = string
+  default     = ""
 }
